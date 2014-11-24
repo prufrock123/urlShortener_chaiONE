@@ -1,32 +1,5 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
-
 
 #This URL shortener works off base 36
 
@@ -39,4 +12,10 @@ Please feel free to use a different markup language if you do not plan to run
 >confusion between numbers that look like upper case letters, for example '0O', '1I', '2Z', 
 >'5S', '6G', and '8B'.
 
-This allows us to take the unique ID our app creates for a link and convert it into a highly compact stringified representation of that link.  Our app can then 
+This allows us to take the unique ID our app creates for a link and convert it into a highly compact stringified representation of that link.  Our app can then take that path, use the shortened ID of property from the params and look up the corresponding full URL in the database. Our app then redirects the user to that full URL path.
+
+There are some validations as well. Our app has validations on the model that checks for a valid HTTP or HTTPS URI. It also checks for the uniqueness of the URL property in the database to help prevent duplication of records.
+
+At the controller level, our app uses a find_or_create_by method to either return an existing record or create a new record if the previous record does not exist.
+
+We use Ajax to asynchronously load the result of the shortened URL operation.
