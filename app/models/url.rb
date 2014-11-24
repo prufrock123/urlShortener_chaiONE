@@ -2,7 +2,7 @@ class Url < ActiveRecord::Base
   after_create :generate_shortened_url
 
   def generate_shortened_url
-    self.shortened_url = self.id.to_s(36)
+    self.shortened_url = (self.id+10).to_s(36)
     self.save
   end
 
