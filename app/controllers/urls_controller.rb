@@ -31,7 +31,8 @@ class UrlsController < ApplicationController
   # POST /urls
   # POST /urls.json
   def create
-    @url = Url.new(url_params)
+    # @url = Url.new(url_params)
+    @url = Url.find_or_create_by(url_params)
 
     respond_to do |format|
       if @url.save
